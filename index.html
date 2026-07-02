@@ -1,0 +1,1994 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🪻 Fête de Cathy Mainville — 44 ans | La Maison Lavande</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ═══════════════════════════════════════
+           CSS RESET & VARIABLES
+           ═══════════════════════════════════════ */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --lavande: #9B72CF;
+            --lavande-light: #C4A8E0;
+            --lavande-dark: #6B3FA0;
+            --lavande-pale: #F3EDFA;
+            --cream: #FDF8F0;
+            --gold: #D4A843;
+            --gold-light: #F0D68A;
+            --sage: #8FAE8B;
+            --blush: #F5E6E0;
+            --white: #FFFFFF;
+            --dark: #2D1B4E;
+            --text: #3A2A4A;
+            --text-light: #6B5B7B;
+            --gradient-lavande: linear-gradient(135deg, #C4A8E0 0%, #9B72CF 50%, #6B3FA0 100%);
+            --gradient-sunset: linear-gradient(135deg, #F5E6E0 0%, #F0D68A 50%, #C4A8E0 100%);
+            --gradient-hero: linear-gradient(180deg, rgba(45,27,78,0.7) 0%, rgba(107,63,160,0.5) 50%, rgba(155,114,207,0.3) 100%);
+            --shadow-soft: 0 4px 30px rgba(155,114,207,0.15);
+            --shadow-glow: 0 0 40px rgba(155,114,207,0.3);
+            --radius: 20px;
+            --radius-sm: 12px;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            background: var(--cream);
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        /* ═══════════════════════════════════════
+           SCROLLBAR
+           ═══════════════════════════════════════ */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--lavande-pale); }
+        ::-webkit-scrollbar-thumb { background: var(--lavande); border-radius: 10px; }
+
+        /* ═══════════════════════════════════════
+           ANIMATIONS
+           ═══════════════════════════════════════ */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(155,114,207,0.3); }
+            50% { box-shadow: 0 0 40px rgba(155,114,207,0.6); }
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        @keyframes lavender-drift {
+            0% { transform: translateX(-100%) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateX(100vw) rotate(720deg); opacity: 0; }
+        }
+        @keyframes text-reveal {
+            from { clip-path: inset(0 100% 0 0); }
+            to { clip-path: inset(0 0% 0 0); }
+        }
+        @keyframes bounce-in {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ═══════════════════════════════════════
+           FLOATING LAVENDER PETALS
+           ═══════════════════════════════════════ */
+        .petal {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            font-size: 20px;
+            animation: lavender-drift linear infinite;
+        }
+
+        /* ═══════════════════════════════════════
+           NAVIGATION
+           ═══════════════════════════════════════ */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(0px);
+        }
+        nav.scrolled {
+            background: rgba(253,248,240,0.95);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 2px 30px rgba(155,114,207,0.15);
+            padding: 10px 40px;
+        }
+        .nav-logo {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        nav.scrolled .nav-logo { color: var(--lavande-dark); }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: all 0.3s;
+            position: relative;
+        }
+        nav.scrolled .nav-links a { color: var(--text); }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s;
+        }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-links a:hover { color: var(--gold); }
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+        }
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background: var(--white);
+            margin: 6px 0;
+            transition: all 0.3s;
+        }
+        nav.scrolled .hamburger span { background: var(--dark); }
+
+        /* ═══════════════════════════════════════
+           HERO SECTION
+           ═══════════════════════════════════════ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background:
+                linear-gradient(180deg,
+                    rgba(45,27,78,0.85) 0%,
+                    rgba(107,63,160,0.6) 40%,
+                    rgba(155,114,207,0.4) 70%,
+                    rgba(196,168,224,0.3) 100%
+                ),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%232D1B4E"/><circle cx="200" cy="400" r="300" fill="%236B3FA0" opacity="0.3"/><circle cx="900" cy="300" r="250" fill="%239B72CF" opacity="0.2"/><circle cx="600" cy="600" r="200" fill="%23C4A8E0" opacity="0.15"/></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(155,114,207,0.3) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 50%, rgba(212,168,67,0.15) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1.2s ease-out;
+        }
+        .hero-lavender {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: float 4s ease-in-out infinite;
+        }
+        .hero-subtitle {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            color: var(--gold-light);
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+        .hero-name {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 7rem);
+            color: var(--white);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 15px;
+            text-shadow: 0 4px 30px rgba(0,0,0,0.3);
+        }
+        .hero-age {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 4rem);
+            background: linear-gradient(135deg, var(--gold-light), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .hero-date {
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.9);
+            font-weight: 300;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+        .hero-location {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 15px 30px;
+            border-radius: 50px;
+            color: var(--white);
+            font-size: 1.1rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            margin-bottom: 40px;
+        }
+        .hero-cta {
+            display: inline-block;
+            padding: 18px 50px;
+            background: var(--gradient-lavande);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            transition: all 0.4s;
+            box-shadow: 0 8px 30px rgba(155,114,207,0.4);
+            animation: pulse-glow 3s infinite;
+        }
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(155,114,207,0.6);
+        }
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: float 2s ease-in-out infinite;
+            z-index: 2;
+        }
+        .scroll-indicator span {
+            display: block;
+            width: 30px;
+            height: 50px;
+            border: 2px solid rgba(255,255,255,0.5);
+            border-radius: 25px;
+            position: relative;
+        }
+        .scroll-indicator span::after {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 6px;
+            background: var(--gold);
+            border-radius: 50%;
+            animation: float 1.5s ease-in-out infinite;
+        }
+
+        /* ═══════════════════════════════════════
+           COUNTDOWN
+           ═══════════════════════════════════════ */
+        .countdown-section {
+            padding: 60px 20px;
+            background: var(--white);
+            text-align: center;
+        }
+        .countdown-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .countdown-item {
+            background: var(--lavande-pale);
+            padding: 25px 20px;
+            border-radius: var(--radius);
+            min-width: 120px;
+            transition: transform 0.3s;
+        }
+        .countdown-item:hover { transform: translateY(-5px); }
+        .countdown-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--lavande-dark);
+            line-height: 1;
+        }
+        .countdown-label {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 5px;
+        }
+
+        /* ═══════════════════════════════════════
+           SECTION BASE STYLES
+           ═══════════════════════════════════════ */
+        section {
+            padding: 100px 20px;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .section-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+        .section-subtitle {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.3rem;
+            color: var(--lavande);
+        }
+        .section-divider {
+            width: 80px;
+            height: 3px;
+            background: var(--gradient-lavande);
+            margin: 20px auto 0;
+            border-radius: 3px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ═══════════════════════════════════════
+           EVENT DETAILS
+           ═══════════════════════════════════════ */
+        .details-section {
+            background: var(--white);
+        }
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .detail-card {
+            background: var(--lavande-pale);
+            padding: 40px 30px;
+            border-radius: var(--radius);
+            text-align: center;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+        .detail-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-lavande);
+        }
+        .detail-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-glow);
+        }
+        .detail-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        .detail-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+        .detail-card p {
+            color: var(--text-light);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        .detail-card .highlight {
+            font-weight: 600;
+            color: var(--lavande-dark);
+        }
+
+        /* ═══════════════════════════════════════
+           ANDIE THERIO SECTION
+           ═══════════════════════════════════════ */
+        .artist-section {
+            background: linear-gradient(180deg, var(--lavande-pale) 0%, var(--cream) 100%);
+            position: relative;
+        }
+        .artist-hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto 60px;
+        }
+        .artist-image-wrapper {
+            position: relative;
+        }
+        .artist-image-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            right: 15px;
+            bottom: 15px;
+            border: 3px solid var(--lavande);
+            border-radius: var(--radius);
+            z-index: 0;
+        }
+        .artist-image {
+            width: 100%;
+            height: 500px;
+            background: linear-gradient(135deg, var(--lavande) 0%, var(--lavande-dark) 100%);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            position: relative;
+            z-index: 1;
+            box-shadow: var(--shadow-soft);
+        }
+        .artist-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+        .artist-genre {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.3rem;
+            color: var(--lavande);
+            margin-bottom: 20px;
+        }
+        .artist-bio p {
+            color: var(--text-light);
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+        .artist-stats {
+            display: flex;
+            gap: 30px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--lavande-dark);
+        }
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .artist-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+        .artist-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+        .artist-link.spotify {
+            background: #1DB954;
+            color: white;
+        }
+        .artist-link.spotify:hover { background: #1aa34a; transform: translateY(-2px); }
+        .artist-link.website {
+            background: var(--lavande);
+            color: white;
+        }
+        .artist-link.website:hover { background: var(--lavande-dark); transform: translateY(-2px); }
+
+        /* ═══════════════════════════════════════
+           SONGS & LYRICS
+           ═══════════════════════════════════════ */
+        .songs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .song-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: all 0.4s;
+            box-shadow: var(--shadow-soft);
+        }
+        .song-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-glow);
+        }
+        .song-header {
+            background: var(--gradient-lavande);
+            padding: 25px 30px;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .song-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            opacity: 0.6;
+        }
+        .song-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+        }
+        .song-album {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            margin-top: 3px;
+        }
+        .lyrics-content {
+            padding: 25px 30px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .lyrics-content::-webkit-scrollbar { width: 4px; }
+        .lyrics-content::-webkit-scrollbar-thumb { background: var(--lavande-light); border-radius: 4px; }
+        .lyrics-line {
+            color: var(--text-light);
+            font-style: italic;
+            line-height: 2;
+            font-size: 0.95rem;
+        }
+        .lyrics-line.highlight {
+            color: var(--lavande-dark);
+            font-weight: 500;
+            font-style: normal;
+        }
+        .song-footer {
+            padding: 15px 30px;
+            background: var(--lavande-pale);
+            font-size: 0.85rem;
+            color: var(--text-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* ═══════════════════════════════════════
+           MAISON LAVANDE SECTION
+           ═══════════════════════════════════════ */
+        .maison-section {
+            background: var(--white);
+            position: relative;
+        }
+        .maison-timeline {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .maison-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--gradient-lavande);
+            transform: translateX(-50%);
+        }
+        .timeline-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        .timeline-item:nth-child(even) { flex-direction: row-reverse; }
+        .timeline-item:nth-child(even) .timeline-content { text-align: right; }
+        .timeline-year {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--lavande);
+            color: var(--white);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            z-index: 2;
+            white-space: nowrap;
+        }
+        .timeline-content {
+            width: 42%;
+            background: var(--lavande-pale);
+            padding: 25px 30px;
+            border-radius: var(--radius);
+            margin-top: 40px;
+        }
+        .timeline-content h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--dark);
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+        .timeline-content p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .maison-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            max-width: 1100px;
+            margin: 60px auto 0;
+        }
+        .maison-feature {
+            background: var(--lavande-pale);
+            padding: 30px;
+            border-radius: var(--radius);
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .maison-feature:hover { transform: translateY(-5px); box-shadow: var(--shadow-soft); }
+        .maison-feature .icon { font-size: 2.5rem; margin-bottom: 15px; }
+        .maison-feature h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--dark);
+            margin-bottom: 8px;
+        }
+        .maison-feature p { color: var(--text-light); font-size: 0.95rem; }
+
+        .maison-cta-bar {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .btn-maison {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 40px;
+            background: var(--gradient-lavande);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            margin: 10px;
+            transition: all 0.3s;
+            box-shadow: var(--shadow-soft);
+        }
+        .btn-maison:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-glow);
+        }
+        .btn-maison.gold {
+            background: linear-gradient(135deg, var(--gold-light), var(--gold));
+        }
+
+        /* ═══════════════════════════════════════
+           BOUTIQUE EMBED
+           ═══════════════════════════════════════ */
+        .boutique-section {
+            background: var(--lavande-pale);
+        }
+        .boutique-iframe-wrap {
+            max-width: 1100px;
+            margin: 0 auto;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+            background: var(--white);
+        }
+        .boutique-iframe-wrap iframe {
+            width: 100%;
+            height: 700px;
+            border: none;
+            display: block;
+        }
+
+        /* ═══════════════════════════════════════
+           GUIDE COULEURS
+           ═══════════════════════════════════════ */
+        .couleurs-section {
+            background: var(--cream);
+        }
+        .couleurs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .couleurs-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 40px 35px;
+            box-shadow: var(--shadow-soft);
+        }
+        .couleurs-card.do { border-top: 5px solid var(--sage); }
+        .couleurs-card.dont { border-top: 5px solid #E57373; }
+        .couleurs-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .couleur-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 18px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid var(--lavande-pale);
+        }
+        .couleur-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .couleur-swatch {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            border: 2px solid rgba(0,0,0,0.1);
+        }
+        .couleur-info h4 {
+            font-size: 1rem;
+            color: var(--dark);
+            margin-bottom: 3px;
+        }
+        .couleur-info p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .conseils-matiere {
+            max-width: 1000px;
+            margin: 40px auto 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .matiere-card {
+            background: var(--white);
+            padding: 25px;
+            border-radius: var(--radius-sm);
+            text-align: center;
+            box-shadow: var(--shadow-soft);
+            transition: transform 0.3s;
+        }
+        .matiere-card:hover { transform: translateY(-3px); }
+        .matiere-card .icon { font-size: 2rem; margin-bottom: 10px; }
+        .matiere-card h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+        .matiere-card p { color: var(--text-light); font-size: 0.85rem; }
+
+        /* ═══════════════════════════════════════
+           MÉTÉO / CANICULE
+           ═══════════════════════════════════════ */
+        .meteo-section {
+            background: linear-gradient(135deg, #FFF8E1 0%, #F3EDFA 100%);
+        }
+        .meteo-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+            align-items: start;
+        }
+        .meteo-widget-wrap {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow-soft);
+        }
+        .meteo-widget-wrap h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--dark);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .conseils-canicule {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 40px 35px;
+            box-shadow: var(--shadow-soft);
+        }
+        .conseils-canicule h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--dark);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .conseil-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 18px;
+            padding: 15px;
+            background: var(--lavande-pale);
+            border-radius: var(--radius-sm);
+            transition: transform 0.2s;
+        }
+        .conseil-item:hover { transform: translateX(5px); }
+        .conseil-item .icon { font-size: 1.5rem; flex-shrink: 0; }
+        .conseil-item h4 {
+            font-size: 0.95rem;
+            color: var(--dark);
+            margin-bottom: 3px;
+        }
+        .conseil-item p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        /* ═══════════════════════════════════════
+           FOOD / POTLUCK
+           ═══════════════════════════════════════ */
+        .food-section {
+            background: var(--white);
+        }
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .food-card {
+            background: var(--cream);
+            border-radius: var(--radius);
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.4s;
+            box-shadow: var(--shadow-soft);
+            position: relative;
+            overflow: hidden;
+        }
+        .food-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-lavande);
+        }
+        .food-card:hover { transform: translateY(-5px); }
+        .food-card .icon { font-size: 3.5rem; margin-bottom: 15px; }
+        .food-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+        .food-card .by {
+            font-family: 'Dancing Script', cursive;
+            color: var(--lavande);
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+        .food-card p { color: var(--text-light); }
+
+        /* ═══════════════════════════════════════
+           PHOTO ALBUM
+           ═══════════════════════════════════════ */
+        .album-section {
+            background: var(--lavande-pale);
+        }
+        .album-wrap {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow-soft);
+            text-align: center;
+        }
+        .album-wrap .pa-carousel-widget {
+            margin: 0 auto;
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+        }
+
+        /* ═══════════════════════════════════════
+           INFO PRATIQUE
+           ═══════════════════════════════════════ */
+        .info-section {
+            background: var(--cream);
+        }
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .info-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-soft);
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+            transition: all 0.3s;
+        }
+        .info-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-glow); }
+        .info-card .icon { font-size: 2rem; flex-shrink: 0; }
+        .info-card h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+        .info-card p { color: var(--text-light); font-size: 0.95rem; }
+
+        /* ═══════════════════════════════════════
+           WILLIAM SECTION
+           ═══════════════════════════════════════ */
+        .william-section {
+            background: linear-gradient(135deg, var(--lavande-pale) 0%, var(--blush) 100%);
+            text-align: center;
+        }
+        .william-card {
+            max-width: 700px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 50px 40px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-soft);
+            position: relative;
+        }
+        .william-card::before {
+            content: '🎵';
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 3rem;
+            background: var(--white);
+            padding: 0 20px;
+            border-radius: 50%;
+        }
+        .william-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+        .william-card .relation {
+            font-family: 'Dancing Script', cursive;
+            color: var(--lavande);
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        .william-card p {
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+        .surprise-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold));
+            color: var(--dark);
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-top: 15px;
+        }
+
+        /* ═══════════════════════════════════════
+           FOOTER
+           ═══════════════════════════════════════ */
+        footer {
+            background: var(--dark);
+            color: rgba(255,255,255,0.8);
+            padding: 60px 20px 30px;
+            text-align: center;
+        }
+        .footer-heart { font-size: 3rem; margin-bottom: 15px; }
+        .footer-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: var(--gold-light);
+            margin-bottom: 10px;
+        }
+        .footer-text {
+            font-size: 1rem;
+            margin-bottom: 8px;
+            opacity: 0.8;
+        }
+        .footer-links {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .footer-links a {
+            color: var(--lavande-light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+        .footer-links a:hover { color: var(--gold-light); }
+        .footer-bottom {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.8rem;
+            opacity: 0.5;
+        }
+
+        /* ═══════════════════════════════════════
+           RESPONSIVE
+           ═══════════════════════════════════════ */
+        @media (max-width: 768px) {
+            nav { padding: 12px 20px; }
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 0; left: 0; right: 0; bottom: 0;
+                background: rgba(45,27,78,0.97);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 25px;
+            }
+            .nav-links.active { display: flex; }
+            .nav-links a { font-size: 1.3rem; color: var(--white) !important; }
+            .hamburger { display: block; z-index: 1001; }
+            .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+            .hamburger.active span:nth-child(2) { opacity: 0; }
+            .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+
+            section { padding: 60px 15px; }
+            .hero { min-height: 100svh; }
+            .artist-hero { grid-template-columns: 1fr; gap: 30px; }
+            .artist-image { height: 350px; }
+            .couleurs-grid { grid-template-columns: 1fr; }
+            .meteo-grid { grid-template-columns: 1fr; }
+            .maison-timeline::before { left: 20px; }
+            .timeline-item, .timeline-item:nth-child(even) { flex-direction: column; padding-left: 50px; }
+            .timeline-year { left: 20px; transform: translateX(-50%); }
+            .timeline-content { width: 100%; text-align: left !important; }
+            .countdown-grid { gap: 15px; }
+            .countdown-item { min-width: 90px; padding: 18px 12px; }
+            .countdown-number { font-size: 2.2rem; }
+            .hero-location { font-size: 0.9rem; padding: 12px 20px; }
+            .songs-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══════════════ NAVIGATION ═══════════════ -->
+    <nav id="mainNav">
+        <a href="#hero" class="nav-logo">🪻 Fête de Cathy</a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#details">Détails</a></li>
+            <li><a href="#artiste">Andie Therio</a></li>
+            <li><a href="#maison">La Maison Lavande</a></li>
+            <li><a href="#boutique">Boutique</a></li>
+            <li><a href="#couleurs">Guide Couleurs</a></li>
+            <li><a href="#meteo">Météo</a></li>
+            <li><a href="#album">Photos</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- ═══════════════ HERO ═══════════════ -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="hero-lavender">🪻</div>
+            <p class="hero-subtitle">Vous êtes cordialement invité(e) à célébrer</p>
+            <h1 class="hero-name">Cathy Mainville</h1>
+            <p class="hero-age">44 ans ✨</p>
+            <p class="hero-date">Vendredi 3 juillet 2026 — Arrivée à 17 h 15</p>
+            <div class="hero-location">
+                📍 La Maison Lavande — 902, Chemin Fresnière, Saint-Eustache (QC)
+            </div>
+            <br>
+            <a href="#details" class="hero-cta">Découvrir les détails ↓</a>
+        </div>
+        <div class="scroll-indicator">
+            <span></span>
+        </div>
+    </section>
+
+    <!-- ═══════════════ COUNTDOWN ═══════════════ -->
+    <section class="countdown-section">
+        <div class="section-header">
+            <span class="section-icon">⏰</span>
+            <h2 class="section-title">Compte à rebours</h2>
+            <p class="section-subtitle">Plus que quelques jours avant la grande fête !</p>
+            <div class="section-divider"></div>
+        </div>
+        <div class="countdown-grid">
+            <div class="countdown-item">
+                <div class="countdown-number" id="days">00</div>
+                <div class="countdown-label">Jours</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="hours">00</div>
+                <div class="countdown-label">Heures</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="minutes">00</div>
+                <div class="countdown-label">Minutes</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="seconds">00</div>
+                <div class="countdown-label">Secondes</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════ EVENT DETAILS ═══════════════ -->
+    <section class="details-section" id="details">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-icon">🎉</span>
+                <h2 class="section-title">Les Détails de la Fête</h2>
+                <p class="section-subtitle">Tout ce que vous devez savoir</p>
+                <div class="section-divider"></div>
+            </div>
+            <div class="details-grid">
+                <div class="detail-card animate-on-scroll">
+                    <div class="icon">📅</div>
+                    <h3>Date & Heure</h3>
+                    <p><span class="highlight">Vendredi 3 juillet 2026</span><br>Arrivée des invités vers <span class="highlight">17 h 15</span></p>
+                </div>
+                <div class="detail-card animate-on-scroll">
+                    <div class="icon">📍</div>
+                    <h3>Lieu</h3>
+                    <p><span class="highlight">La Maison Lavande</span><br>902, Chemin Fresnière<br>Saint-Eustache (Québec) J7R 0G4</p>
+                </div>
+                <div class="detail-card animate-on-scroll">
+                    <div class="icon">🎤</div>
+                    <h3>Spectacle</h3>
+                    <p>Prestation musicale d'<span class="highlight">Andie Therio</span><br>17 h 15 à 20 h — en plein champ de lavande</p>
+                </div>
+                <div class="detail-card animate-on-scroll">
+                    <div class="icon">🎂</div>
+                    <h3>La Fêtée</h3>
+                    <p><span class="highlight">Cathy Mainville</span><br>Soufflera ses 44 bougies le <span class="highlight">12 juillet</span></p>
+                </div>
+                <div class="detail-card animate-on-scroll">
+                    <div class="icon">🍕</div>
+                    <h3>À Manger</h3>
+                    <p><span class="highlight">Pizza froide</span> par Cathy<br><span class="highlight">Salade de fruits</span> par Sylvie <em>(comme l'an passé !)</em></p>
+                </div>
+                <div class="detail-card animate-on-scroll">
+                    <div class="icon">🥂</div>
+                    <h3>Bon à savoir</h3>
+                    <p>Apportez votre <span class="highlight">propre alcool</span><br>et payez votre <span class="highlight">entrée</span> à la Maison Lavande</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════ WILLIAM ═══════════════ -->
+    <section class="william-section">
+        <div class="container animate-on-scroll">
+            <div class="section-header">
+                <span class="section-icon">🎸</span>
+                <h2 class="section-title">Surprise possible !</h2>
+                <div class="section-divider"></div>
+            </div>
+            <div class="william-card">
+                <h3>William</h3>
+                <p class="relation">Le fils de Cathy 🎶</p>
+                <p>William prépare peut-être une surprise musicale pour sa maman ! Il nous recommande fortement de venir découvrir la prestation d'Andie Therio — <strong>9 sur 10</strong> qu'il sera au rendez-vous avec sa propre performance !</p>
+                <div class="surprise-badge">🤫 Surprise — pas garantie à 100 % !</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════ ANDIE THERIO ═══════════════ -->
+    <section class="artist-section" id="artiste">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-icon">🎤</span>
+                <h2 class="section-title">Prestation Musicale</h2>
+                <p class="section-subtitle">L'artiste de la soirée</p>
+                <div class="section-divider"></div>
+            </div>
+
+            <div class="artist-hero animate-on-scroll">
+                <div class="artist-image-wrapper">
+                    <div class="artist-image">🎤</div>
+                </div>
+                <div class="artist-info">
+                    <h3>Andie Therio</h3>
+                    <p class="artist-genre">New Country · Folk · Pop-Rock</p>
+                    <div class="artist-bio">
+                        <p>Originaire de <strong>Beauharnois</strong>, Andie Therio a grandi avec une guitare jamais bien loin. Autodidacte, cette auteure-compositrice-interprète a commencé à composer vers l'âge de 13 ans, puise son inspiration dans ses propres expériences de vie qu'elle transforme en chansons sincères et senties.</p>
+                        <p>Influencée par le country, le pop-rock et le folk, Andie fait ses débuts officiels à l'été 2022 avec l'EP <strong>« She's Good »</strong>, qui lui permet de se faire connaître rapidement et de monter sur de grandes scènes comme le <strong>Festival Country Lotbinière</strong>, le <strong>Festival LASSO Montréal</strong> et le <strong>Festival Western de St-Tite</strong>.</p>
+                        <p>À l'automne 2023, elle présente <strong>« Back To You »</strong>, son premier album complet composé de sept chansons originales. Elle parcourt le Québec avec sa tournée en 2024 et 2025, puis obtient le <strong>3e prix du programme RBC pour les musiciens émergents de Canada's Walk of Fame 2025</strong>.</p>
+                        <p>Future star iHeartRadio de décembre 2024 à Rouge FM, Andie cumule <strong>cinq nominations au Gala Country</strong> ainsi qu'une nomination à l'ADISQ avec le collectif Grande Ourse. Jusqu'en 2027, elle assurera les premières parties de <strong>Clément Jacques</strong> dans le cadre de sa tournée IRIS.</p>
+                        <p>Elle prépare maintenant son <strong>premier album en français</strong> — une nouvelle ère artistique aux couleurs bohèmes et lumineuses, portée par l'amour de soi, la spontanéité et la légèreté.</p>
+                    </div>
+                    <div class="artist-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">2022</div>
+                            <div class="stat-label">Débuts</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">5</div>
+                            <div class="stat-label">Nominations</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">3e</div>
+                            <div class="stat-label">Prix RBC</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">2027</div>
+                            <div class="stat-label">Tournée IRIS</div>
+                        </div>
+                    </div>
+                    <div class="artist-links">
+                        <a href="https://open.spotify.com/intl-fr/artist/6iJjcbcInK5wOen7mW7emi" target="_blank" class="artist-link spotify">🎵 Spotify</a>
+                        <a href="https://andietherio.com/" target="_blank" class="artist-link website">🌐 Site Officiel</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SONGS & LYRICS -->
+            <div class="section-header animate-on-scroll">
+                <span class="section-icon">🎵</span>
+                <h2 class="section-title">Ses Chansons & Paroles</h2>
+                <p class="section-subtitle">Découvrez son univers musical</p>
+                <div class="section-divider"></div>
+            </div>
+
+            <div class="songs-grid">
+                <!-- DANSER ICI -->
+                <div class="song-card animate-on-scroll">
+                    <div class="song-header">
+                        <span class="song-number">01</span>
+                        <div>
+                            <div class="song-title">Danser Ici</div>
+                            <div class="song-album">Nouvel album français — 2026</div>
+                        </div>
+                    </div>
+                    <div class="lyrics-content">
+                        <p class="lyrics-line highlight">J'ai envie qu'on danse ici, longtemps</p>
+                        <p class="lyrics-line highlight">Qu'on se raconte l'amour</p>
+                        <p class="lyrics-line">Qu'on ne retienne rien en dedans</p>
+                        <p class="lyrics-line">Qu'on laisse tomber le jour</p>
+                        <p class="lyrics-line highlight">Qu'il n'y ait que la lune et ses étoiles</p>
+                        <p class="lyrics-line">Pour faire briller nos yeux</p>
+                        <p class="lyrics-line highlight">Et un peu de nous...</p>
+                        <br>
+                        <p class="lyrics-line" style="font-size:0.85rem; color: var(--lavande);">Écrite et composée par Andie Therio</p>
+                        <p class="lyrics-line" style="font-size:0.85rem; color: var(--lavande);">Réalisée par Marc Béland</p>
+                        <p class="lyrics-line" style="font-size:0.85rem; color: var(--lavande);">Guitare : Vincent Gendron · Batterie : Marc Béland</p>
+                        <p class="lyrics-line" style="font-size:0.85rem; color: var(--lavande);">Vidéoclip par Forêt Sauvage Films</p>
+                    </div>
+                    <div class="song-footer">
+                        <span>Pop-country chaleureuse</span>
+                        <span>💛</span>
+                    </div>
+                </div>
+
+                <!-- NOMADE -->
+                <div class="song-card animate-on-scroll">
+                    <div class="song-header">
+                        <span class="song-number">02</span>
+                        <div>
+                            <div class="song-title">Nomade</div>
+                            <div class="song-album">Nouvel album français — 2025</div>
+                        </div>
+                    </div>
+                    <div class="lyrics-content">
+                        <p class="lyrics-line">L'amour de cœur léger</p>
+                        <p class="lyrics-line">Et il va où ça lui chante</p>
+                        <p class="lyrics-line">Là où les dommages sont passagers</p>
+                        <p class="lyrics-line highlight">Oui, le monde est bien trop grand</p>
+                        <p class="lyrics-line">...</p>
+                        <p class="lyrics-line">Je t'avoue avoir d'autres plans</p>
+                        <p class="lyrics-line">J'irai pas trop loin</p>
+                        <p class="lyrics-line highlight">Mais qui sait ? Je m'enfuirai pas trop</p>
+                        <p class="lyrics-line">Oh ! Je m'enfuirai pas trop</p>
+                        <p class="lyrics-line">...</p>
+                        <p class="lyrics-line highlight">Avant qui se lève le papillon</p>
+                        <p class="lyrics-line">Qui m'indique que je prends le bon chemin</p>
+                        <p class="lyrics-line">Les hasards d'amour dans un tournoi</p>
+                        <p class="lyrics-line highlight">Me font croire que j'ai raison</p>
+                        <p class="lyrics-line">De faire qu'à ma tête</p>
+                        <p class="lyrics-line">Et de croire que peut-être bien</p>
+                        <p class="lyrics-line">...</p>
+                        <p class="lyrics-line highlight">Moi j'ai de l'espoir plein les poches</p>
+                        <p class="lyrics-line highlight">Je m'enfuirai pas trop</p>
+                        <p class="lyrics-line">Moi j'ai besoin de m'en aller</p>
+                        <p class="lyrics-line">C'est pas les excuses qui m'en empêcheront</p>
+                        <p class="lyrics-line">Si tu veux bien m'excuser</p>
+                        <p class="lyrics-line highlight">Je m'enfuirai pas trop</p>
+                    </div>
+                    <div class="song-footer">
+                        <span>Ligne directrice du nouvel album</span>
+                        <span>🦋</span>
+                    </div>
+                </div>
+
+                <!-- BACK TO YOU -->
+                <div class="song-card animate-on-scroll">
+                    <div class="song-header">
+                        <span class="song-number">03</span>
+                        <div>
+                            <div class="song-title">Back To You</div>
+                            <div class="song-album">Album — 2023</div>
+                        </div>
+                    </div>
+                    <div class="lyrics-content">
+                        <p class="lyrics-line">It doesn't waste your time</p>
+                        <p class="lyrics-line">It's gotta keep the good memories</p>
+                        <p class="lyrics-line">...</p>
+                        <p class="lyrics-line">Sorry if I let you down in some ways</p>
+                        <p class="lyrics-line highlight">I had to fall to get back to where I am</p>
+                        <p class="lyrics-line">Deep down inside we both know the truth</p>
+                        <p class="lyrics-line highlight">Never leave, now I promise I won't leave</p>
+                        <p class="lyrics-line highlight">Now that I'm back to you</p>
+                        <p class="lyrics-line">...</p>
+                        <p class="lyrics-line">I've cried, whatever happened to cry</p>
+                        <p class="lyrics-line highlight">But now I'm ready, give it another try</p>
+                        <p class="lyrics-line">I've been down to many black holes</p>
+                        <p class="lyrics-line">I've been lost...</p>
+                        <p class="lyrics-line">...</p>
+                        <p class="lyrics-line">Don't worry if I let you down in some ways</p>
+                        <p class="lyrics-line highlight">Had to fall to get back to where I am</p>
+                        <p class="lyrics-line">Deep down inside we both know the truth</p>
+                        <p class="lyrics-line highlight">Never leave, I won't leave</p>
+                        <p class="lyrics-line highlight">And then I'm back to you</p>
+                    </div>
+                    <div class="song-footer">
+                        <span>Premier album complet — 7 chansons</span>
+                        <span>💿</span>
+                    </div>
+                </div>
+
+                <!-- DERNIER MOT -->
+                <div class="song-card animate-on-scroll">
+                    <div class="song-header">
+                        <span class="song-number">04</span>
+                        <div>
+                            <div class="song-title">Dernier Mot</div>
+                            <div class="song-album">Nouvel album français — 2025</div>
+                        </div>
+                    </div>
+                    <div class="lyrics-content">
+                        <p class="lyrics-line">Pièce du nouvel album en préparation</p>
+                        <br>
+                        <p class="lyrics-line highlight">« Dernier mot » marque le début</p>
+                        <p class="lyrics-line highlight">d'une nouvelle ère artistique</p>
+                        <p class="lyrics-line highlight">aux couleurs bohèmes et lumineuses.</p>
+                        <br>
+                        <p class="lyrics-line">Portée par l'amour de soi,</p>
+                        <p class="lyrics-line">la spontanéité et la légèreté,</p>
+                        <p class="lyrics-line">cette chanson met de l'avant</p>
+                        <p class="lyrics-line highlight">une Andie plus assumée que jamais.</p>
+                        <br>
+                        <p class="lyrics-line" style="font-size:0.85rem; color: var(--lavande);">Disponible sur toutes les plateformes numériques</p>
+                    </div>
+                    <div class="song-footer">
+                        <span>Amour de soi & légèreté</span>
+                        <span>🌿</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════ MAISON LAVANDE HISTORIQUE ═══════════════ -->
+    <section class="maison-section" id="maison">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-icon">🪻</span>
+                <h2 class="section-title">La Maison Lavande</h2>
+                <p class="section-subtitle">Notre lieu de célébration — une histoire d'amour avec la lavande</p>
+                <div class="section-divider"></div>
+            </div>
+
+            <!-- TIMELINE -->
+            <div class="maison-timeline animate-on-scroll">
+                <div class="timeline-item">
+                    <span class="timeline-year">2006</span>
+                    <div class="timeline-content" style="margin-left: auto; margin-right: 55%;">
+                        <h4>💡 L'Étincelle</h4>
+                        <p>Nancie Ferron et Daniel Joannette, deux ex-journalistes à la télévision, reviennent de Provence complètement charmés par la lavande. L'idée de créer une culture de lavande au Québec germe dans leur esprit.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-year">2009</span>
+                    <div class="timeline-content" style="margin-right: auto; margin-left: 55%;">
+                        <h4>🌱 La Fondation</h4>
+                        <p>C'est à l'été 2009 que Nancie et Daniel fondent officiellement <strong>La Maison Lavande</strong> à Saint-Eustache, sur le site d'un ancien verger. Aidés de leurs filles Marjolaine et Florence, ils créent une entreprise alliant culture, boutique du terroir et parfumerie.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-year">Débuts</span>
+                    <div class="timeline-content" style="margin-left: auto; margin-right: 55%;">
+                        <h4>🌿 5 000 Plants</h4>
+                        <p>Plus de 5 000 plants de lavande sont mis en terre dès les tout débuts, posant les fondations de ce qui deviendra un véritable site agrotouristique.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-year">Aujourd'hui</span>
+                    <div class="timeline-content" style="margin-right: auto; margin-left: 55%;">
+                        <h4>💜 Près d'1 km de Champs</h4>
+                        <p>On en est maintenant à près d'un kilomètre de champs dans lesquels vous pouvez vous balader doucement. La Maison Lavande est devenue une destination touristique estivale incontournable des Laurentides.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FEATURES -->
+            <div class="maison-features">
+                <div class="maison-feature animate-on-scroll">
+                    <div class="icon">🧊</div>
+                    <h4>Produits Naturels</h4>
+                    <p>Fabriqués au Québec, sans parabènes ni silicones, naturels à au moins 95%, non-testés sur les animaux.</p>
+                </div>
+                <div class="maison-feature animate-on-scroll">
+                    <div class="icon">🍽️</div>
+                    <h4>Bistro</h4>
+                    <p>Limonade & café glacé à la lavande, pâtisseries, yogourt glacé et bien plus. Options véganes disponibles.</p>
+                </div>
+                <div class="maison-feature animate-on-scroll">
+                    <div class="icon">🌅</div>
+                    <h4>Soirées Coucher de Soleil</h4>
+                    <p>Jeudis & vendredis de juillet, profitez des champs sous la lumière dorée des soirs d'été. Ouvert jusqu'à 21h.</p>
+                </div>
+                <div class="maison-feature animate-on-scroll">
+                    <div class="icon">🎶</div>
+                    <h4>Prestations Musicales</h4>
+                    <p>Vendredis de 17h15 à 20h et dimanches de 12h15 à 15h — au cœur des champs fleuris.</p>
+                </div>
+                <div class="maison-feature animate-on-scroll">
+                    <div class="icon">🧘</div>
+                    <h4>Yoga & Ateliers</h4>
+                    <p>Cours de yoga en plein air, ateliers découverte et expériences immersives dans les champs.</p>
+                </div>
+                <div class="maison-feature animate-on-scroll">
+                    <div class="icon">💤</div>
+                    <h4>Bienfaits de la Lavande</h4>
+                    <p>Sommeil, anti-stress, soulagement des maux, aromathérapie — les vertus de la lavande sont infinies.</p>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="maison-cta-bar animate-on-scroll">
+                <a href="https://maisonlavande.ca/" target="_blank" class="btn-maison">🌐 Visiter le site de La Maison Lavande</a>
+                <a href="https://maisonlavande.ca/collections/all" target="_blank" class="btn-maison gold">🛒 Magasiner en ligne</a>
+                <a href="https://maisonlavande.ca/pages/billets-electroniques" target="_blank" class="btn-maison">🎟️ Acheter des billets</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════ BOUTIQUE EMBED ═══════════════ -->
+    <section class="boutique-section" id="boutique">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-icon">🛒</span>
+                <h2 class="section-title">Boutique Officielle</h2>
+                <p class="section-subtitle">Parfumerie, soins corporels, produits gourmets et plus</p>
+                <div class="section-divider"></div>
+            </div>
+            <div class="boutique-iframe-wrap animate-on-scroll">
+                <iframe src="https://maisonlavande.ca/collections/all" title="Boutique La Maison Lavande" loading="lazy"></iframe>
+            </div>
+            <p style="text-align: center; margin-top: 20px; color: var(--text-light); font-size: 0.9rem;">
+                📦 Livraison gratuite à l'achat de 75$+ partout au Canada
+            </p>
+        </div>
+    </section>
+
+    <!-- ═══════════════ GUIDE COULEURS ═══════════════ -->
+    <section class="couleurs-section" id="couleurs">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-icon">👗</span>
+                <h2 class="section-title">Guide de Couleurs & Style</h2>
+                <p class="section-subtitle">Pour des photos magnifiques dans les champs de lavande 📸</p>
+                <div class="section-divider"></div>
+            </div>
+
+            <div class="couleurs-grid">
+                <!-- DO -->
+                <div class="couleurs-card do animate-on-scroll">
+                    <h3>✅ Couleurs Recommandées</h3>
+                    <div class="couleur-item">
+                        <div class="couleur-swatch" style="background: #FFFFF0;"></div>
+                        <div class="couleur-info">
+                            <h4>Blanc & Ivoire</h4>
+                            <p>Illumine le visage. Crée un contraste pur et intemporel avec le mauve.</p>
+                        </div>
+                    </div>
+                    <div class="couleur-item">
+                        <div class="couleur-swatch" style="background: #D2B48C;"></div>
+                        <div class="couleur-info">
+                            <h4>Beige, Crème & Taupe</h4>
+                            <p>Tons neutres qui adoucissent l'image. Style bohème chic.</p>
+                        </div>
+                    </div>
+                    <div class="couleur-item">
+                        <div class="couleur-swatch" style="background: #87CEEB;"></div>
+                        <div class="couleur-info">
+                            <h4>Bleu Ciel / Denim Clair</h4>
+                            <p>Complémentaire parfait du mauve. Évoque la douceur de l'été.</p>
+                        </div>
+                    </div>
+                    <div class="couleur-item">
+                        <div class="couleur-swatch" style="background: #F0E68C;"></div>
+                        <div class="couleur-info">
+                            <h4>Jaune Pastel / Moutarde</h4>
+                            <p>Couleur complémentaire du violet. Effet vibrant garanti !</p>
+                        </div>
+                    </div>
+                    <div class="couleur-item">
+                        <div class="couleur-swatch" style="background: #9CAF88;"></div>
+                        <div class="couleur-info">
+                            <h4>Vert Sauge</h4>
+                            <p>Rappelle les feuilles de lavande. Harmonie très naturelle.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DONT -->
+                <div class="couleurs-card dont animate-on-scroll">
+                    <h3>❌ Couleurs à Éviter</h3>
+                    <div class="couleur-item">
+                        <div class="couleur-swatch" style="background: #8A2BE2;"></div>
+                        <div class="couleur-info">
+                            <h4>Mauve & Violet</h4>
+                            <p>Vous allez vous fondre dans le décor et disparaître !</p>
+                        </div>
+                    </div>
+                    <div class="couleur-item">
+                        <div class="couleur-swatch" style="background: #1B1B1B;"></div>
+                        <div class="couleur-info">
+                            <h4>Noir & Vert Foncé</h4>
+                            <p>Trop lourds. Ils durcissent les traits sous le soleil.</p>
+                        </div>
+                    </div>
+                    <div class="couleur-item">
+                        <div class="couleur-swatch" style="background: #FF0; border: 2px solid #0F0;"></div>
+                        <div class="couleur-info">
+                            <h4>Couleurs Néon / Fluos</h4>
+                            <p>Créent des reflets colorés disgracieux sur votre peau.</p>
+                        </div>
+                    </div>
+
+                    <h3 style="margin-top: 30px;">💡 Conseils Pratiques</h3>
+                    <div class="couleur-item">
+                        <div class="couleur-info">
+                            <h4>🌸 Période de Floraison</h4>
+                            <p>La lavande est à son apogée de mi-juillet à début août.</p>
+                        </div>
+                    </div>
+                    <div class="couleur-item">
+                        <div class="couleur-info">
+                            <h4>☀️ Heure Dorée</h4>
+                            <p>Fin de journée pour éviter les ombres dures sur les visages.</p>
+                        </div>
+                    </div>
+                    <div class="couleur-item">
+                        <div class="couleur-info">
+                            <h4>🧺 Confort</h4>
+                            <p>Apportez une couverture neutre pour vous asseoir au sol.</p>
+                        </div>
+                    </div>
+                    <div class="couleur-item">
+                        <div class="couleur-info">
+                            <h4>🧥 Soirée</h4>
+                            <p>Veste légère beige ou en jean clair si la soirée se rafraîchit.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MATIERES -->
+            <div class="conseils-matiere">
+                <div class="matiere-card animate-on-scroll">
+                    <div class="icon">🌿</div>
+                    <h4>Matières Naturelles</h4>
+                    <p>Privilégiez le lin, le coton et la dentelle</p>
+                </div>
+                <div class="matiere-card animate-on-scroll">
+                    <div class="icon">💨</div>
+                    <h4>Tissus Fluides</h4>
+                    <p>Choisissez des tissus qui volent légèrement au vent</p>
+                </div>
+                <div class="matiere-card animate-on-scroll">
+                    <div class="icon">🌸</div>
+                    <h4>Motifs Discrets</h4>
+                    <p>Couleurs unies, petites fleurs ou rayures fines</p>
+                </div>
+                <div class="matiere-card animate-on-scroll">
+                    <div class="icon">📸</div>
+                    <h4>Photos Réussies</h4>
+                    <p>Les couleurs claires ressortent magnifiquement sur fond mauve</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════ FOOD ═══════════════ -->
+    <section class="food-section" id="food">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-icon">🍽️</span>
+                <h2 class="section-title">Au Menu</h2>
+                <p class="section-subtitle">Préparé avec amour par la famille et les amis</p>
+                <div class="section-divider"></div>
+            </div>
+            <div class="food-grid">
+                <div class="food-card animate-on-scroll">
+                    <div class="icon">🍕</div>
+                    <h3>Pizzas Froides</h3>
+                    <p class="by">par Cathy</p>
+                    <p>La fêtée elle-même s'occupe de régaler ses invités avec ses délicieuses pizzas froides maison — un classique apprécié de tous !</p>
+                </div>
+                <div class="food-card animate-on-scroll">
+                    <div class="icon">🥗</div>
+                    <h3>Salade de Fruits</h3>
+                    <p class="by">par Sylvie</p>
+                    <p>La fameuse salade de fruits de Sylvie, de retour comme l'an passé ! Fraîche, colorée et irrésistible — un vrai délice d'été.</p>
+                </div>
+                <div class="food-card animate-on-scroll">
+                    <div class="icon">🥂</div>
+                    <h3>Votre Alcool</h3>
+                    <p class="by">par Vous !</p>
+                    <p>N'oubliez pas d'apporter vos boissons alcoolisées préférées. La Maison Lavande offre aussi limonade et café glacé à la lavande !</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════ MÉTÉO & CANICULE ═══════════════ -->
+    <section class="meteo-section" id="meteo">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-icon">☀️</span>
+                <h2 class="section-title">Météo & Conseils Canicule</h2>
+                <p class="section-subtitle">Restez au frais et profitez du soleil en toute sécurité</p>
+                <div class="section-divider"></div>
+            </div>
+
+            <div class="meteo-grid">
+                <div class="meteo-widget-wrap animate-on-scroll">
+                    <h3>🌤️ Prévisions Météo</h3>
+                    <!-- Elfsight Weather Widget -->
+                    <script src="https://elfsightcdn.com/platform.js" async></script>
+                    <div class="elfsight-app-2ec9b956-08c6-4c93-abd8-ec1aa35bea66" data-elfsight-app-lazy></div>
+                </div>
+
+                <div class="conseils-canicule animate-on-scroll">
+                    <h3>🧊 Comment Se Rafraîchir</h3>
+                    <div class="conseil-item">
+                        <span class="icon">💧</span>
+                        <div>
+                            <h4>Hydratation Constante</h4>
+                            <p>Apportez une grande bouteille d'eau et buvez régulièrement, même sans soif. Le café glacé à la lavande du bistro est aussi rafraîchissant !</p>
+                        </div>
+                    </div>
+                    <div class="conseil-item">
+                        <span class="icon">🧴</span>
+                        <div>
+                            <h4>Protection Solaire</h4>
+                            <p>Crème solaire SPF 30+, chapeau à large bord et lunettes de soleil sont indispensables dans les champs ouverts.</p>
+                        </div>
+                    </div>
+                    <div class="conseil-item">
+                        <span class="icon">👒</span>
+                        <div>
+                            <h4>Vêtements Légers</h4>
+                            <p>Tissus légers et respirants (lin, coton). Les couleurs claires reflètent la chaleur — suivez notre guide de couleurs !</p>
+                        </div>
+                    </div>
+                    <div class="conseil-item">
+                        <span class="icon">🌳</span>
+                        <div>
+                            <h4>Profitez de l'Ombre</h4>
+                            <p>Alternez entre les champs ensoleillés et les zones ombragées. Les arbres et structures du site offrent des refuge agréables.</p>
+                        </div>
+                    </div>
+                    <div class="conseil-item">
+                        <span class="icon">🧣</span>
+                        <div>
+                            <h4>Veste pour le Soir</h4>
+                            <p>La température peut baisser en soirée. Prévoyez une veste légère beige ou un denim clair pour le coucher de soleil.</p>
+                        </div>
+                    </div>
+                    <div class="conseil-item">
+                        <span class="icon">🍦</span>
+                        <div>
+                            <h4>Yogourt Glacé</h4>
+                            <p>Le bistro de La Maison Lavande offre du yogourt glacé à la lavande — le parfait rafraîchissement entre deux danses !</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════ PHOTO ALBUM ═══════════════ -->
+    <section class="album-section" id="album">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-icon">📸</span>
+                <h2 class="section-title">Album Photo Partagé</h2>
+                <p class="section-subtitle">Partagez vos plus beaux souvenirs de la fête !</p>
+                <div class="section-divider"></div>
+            </div>
+            <div class="album-wrap animate-on-scroll">
+                <p style="margin-bottom: 20px; color: var(--text-light);">
+                    Cliquez sur l'album ci-dessous pour voir et ajouter vos photos 📱✨
+                </p>
+                <!-- Google Photos Album Widget -->
+                <script src="https://cdn.jsdelivr.net/npm/publicalbum@latest/embed-ui.min.js" async></script>
+                <div class="pa-carousel-widget" style="width:100%; height:480px; display:none;"
+                    data-link="https://photos.app.goo.gl/c1TWYiNnEp758sig7"
+                    data-title="Maison Lavande 2026 · Shared album 📸"
+                    data-description="Tap to view!"
+                    data-delay="53"
+                    data-repeat="false">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════ INFO PRATIQUE ═══════════════ -->
+    <section class="info-section" id="info">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <span class="section-icon">📋</span>
+                <h2 class="section-title">Informations Pratiques</h2>
+                <p class="section-subtitle">Tout pour profiter pleinement de la soirée</p>
+                <div class="section-divider"></div>
+            </div>
+            <div class="info-cards">
+                <div class="info-card animate-on-scroll">
+                    <span class="icon">🎟️</span>
+                    <div>
+                        <h4>Entrée</h4>
+                        <p>Adulte : 15,00 $ +tx · Jeune (8-17 ans) : 7,50 $ +tx · Enfant (7 ans et -) : Gratuit · Billets disponibles à l'accueil ou en ligne.</p>
+                    </div>
+                </div>
+                <div class="info-card animate-on-scroll">
+                    <span class="icon">🕐</span>
+                    <div>
+                        <h4>Horaires du Site</h4>
+                        <p>Haute saison : 10h à 21h les jeudis & vendredis de juillet. Boutique : tous les jours 10h à 17h, toute l'année.</p>
+                    </div>
+                </div>
+                <div class="info-card animate-on-scroll">
+                    <span class="icon">🚗</span>
+                    <div>
+                        <h4>Accès</h4>
+                        <p>Stationnement gratuit sur place. 902, Chemin Fresnière, Saint-Eustache (QC) J7R 0G4 — à seulement 45 min de Montréal.</p>
+                    </div>
+                </div>
+                <div class="info-card animate-on-scroll">
+                    <span class="icon">🐕</span>
+                    <div>
+                        <h4>Animaux</h4>
+                        <p>Les bébés poilus sont les bienvenus à La Maison Lavande !</p>
+                    </div>
+                </div>
+                <div class="info-card animate-on-scroll">
+                    <span class="icon">🧺</span>
+                    <div>
+                        <h4>Pique-Nique</h4>
+                        <p>Tables et chaises disponibles. Vous pouvez aussi apporter une couverture pour vous installer entre les rangs en fleurs.</p>
+                    </div>
+                </div>
+                <div class="info-card animate-on-scroll">
+                    <span class="icon">📸</span>
+                    <div>
+                        <h4>Photos</h4>
+                        <p>Profitez de l'heure dorée en fin de journée pour de magnifiques photos dans les champs de lavande !</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════ FOOTER ═══════════════ -->
+    <footer>
+        <div class="footer-heart">🪻</div>
+        <p class="footer-title">Joyeux 44e Anniversaire, Cathy !</p>
+        <p class="footer-text">Vendredi 3 juillet 2026 · La Maison Lavande · Saint-Eustache</p>
+        <p class="footer-text">Arrivée à 17 h 15 · Spectacle d'Andie Therio</p>
+        <div class="footer-links">
+            <a href="https://maisonlavande.ca/" target="_blank">🌐 La Maison Lavande</a>
+            <a href="https://maisonlavande.ca/collections/all" target="_blank">🛒 Boutique</a>
+            <a href="https://andietherio.com/" target="_blank">🎤 Andie Therio</a>
+            <a href="https://open.spotify.com/intl-fr/artist/6iJjcbcInK5wOen7mW7emi" target="_blank">🎵 Spotify</a>
+            <a href="https://photos.app.goo.gl/c1TWYiNnEp758sig7" target="_blank">📸 Album Photo</a>
+        </div>
+        <p class="footer-bottom">Fait avec 💜 pour Cathy Mainville · 2026</p>
+    </footer>
+
+    <!-- ═══════════════ JAVASCRIPT ═══════════════ -->
+    <script>
+        // ─── NAVIGATION SCROLL ───
+        const nav = document.getElementById('mainNav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 80);
+        });
+
+        // ─── HAMBURGER ───
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // ─── COUNTDOWN ───
+        function updateCountdown() {
+            const eventDate = new Date('2026-07-03T17:15:00-04:00');
+            const now = new Date();
+            const diff = eventDate - now;
+
+            if (diff <= 0) {
+                document.getElementById('days').textContent = '🎉';
+                document.getElementById('hours').textContent = 'C\'est';
+                document.getElementById('minutes').textContent = 'aujourd\'hui';
+                document.getElementById('seconds').textContent = '!';
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // ─── SCROLL ANIMATIONS ───
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+        // ─── FLOATING PETALS ───
+        const petals = ['🪻', '💜', '🌸', '✨', '🦋'];
+        function createPetal() {
+            const petal = document.createElement('div');
+            petal.className = 'petal';
+            petal.textContent = petals[Math.floor(Math.random() * petals.length)];
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.top = '-30px';
+            petal.style.fontSize = (12 + Math.random() * 18) + 'px';
+            petal.style.animationDuration = (8 + Math.random() * 12) + 's';
+            petal.style.animationDelay = Math.random() * 5 + 's';
+            document.body.appendChild(petal);
+            setTimeout(() => petal.remove(), 25000);
+        }
+        // Create petals periodically
+        setInterval(createPetal, 3000);
+        // Initial batch
+        for (let i = 0; i < 5; i++) setTimeout(createPetal, i * 600);
+
+        // ─── SMOOTH SCROLL FOR CTA ───
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
